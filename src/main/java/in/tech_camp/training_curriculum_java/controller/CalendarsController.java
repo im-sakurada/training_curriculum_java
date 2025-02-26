@@ -43,7 +43,7 @@ public class CalendarsController {
       newPlan.setPlan(planForm.getPlan());
       planRepository.insert(newPlan);
     }
-    return "redirect:/calendars";
+    return "redirect:/";
   }
 
   private List<Map<String, Object>> getweek() {
@@ -65,11 +65,13 @@ public class CalendarsController {
           }
       }
 
+      int wdayNum = (todaysDate.getDayOfWeek().getValue() + x) % 7;
       dayMap.put("month", currentDate.getMonthValue());
       dayMap.put("date", currentDate.getDayOfMonth());
       dayMap.put("plans", todayPlans);
-
+      dayMap.put("wday", wdays[wdayNum]);
       weekDays.add(dayMap);
+
     }
 
     return weekDays;
